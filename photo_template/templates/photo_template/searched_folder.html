@@ -1,0 +1,120 @@
+{% extends 'photo_template/base.html' %}
+
+
+
+{% block title %}
+Searched Folder - SnapShare
+{% endblock title %}
+
+
+{% block css %}
+    body {
+      background-color: #f8f9fa;
+      background-image: url('https://source.unsplash.com/random/1920x1080?texture');
+      cursor: url('https://i.imgur.com/DmBTFWT.png'), auto;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .searched-folder {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .searched-folder-content {
+      max-width: 600px;
+      width: 100%;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 1s;
+    }
+
+    .searched-folder-content h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .searched-folder-files {
+      margin-top: 1.5rem;
+    }
+
+    .searched-folder-files ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .searched-folder-files li {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .folder-icon {
+      font-size: 4rem;
+      color: #ffc107;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .folder-icon i {
+      font-size: 2rem;
+    }
+
+    .folder-icon:hover {
+      background-color: #e5e5e5;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .lock-icon {
+      font-size: 1.5rem;
+      color: #dc3545;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+{% endblock css %}
+
+
+{% block content %}
+  <main class="searched-folder">
+    <div class="container">
+      <div class="searched-folder-content animate__animated animate__fadeInUp">
+        <h2>Searched Folder: {{ folder.name }}</h2>
+        <p>Token usage count: {{ folder.token_usage_count }} / 8</p>
+        <div class="searched-folder-files">
+          <ul>
+            <li>
+              <a href="#" class="folder-icon">
+                <i class="fas fa-folder"></i>
+                <i class="fas fa-lock lock-icon"></i>
+              </a>
+              <p>{{ folder.name }}</p>
+            </li>
+            <!-- Add more files dynamically if needed -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock content %}

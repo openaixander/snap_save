@@ -1,0 +1,140 @@
+{% extends 'photo_template/base.html' %}
+
+
+
+{% block title %}
+Photographer Dashboard - SnapShare
+{% endblock title %}
+
+
+{% block css %}
+    body {
+      cursor: url('https://i.imgur.com/DmBTFWT.png'), auto;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/random/1920x1080?photography');
+      background-size: cover;
+      background-position: center;
+      animation: fadeInBackground 2s ease-in-out;
+    }
+
+    @keyframes fadeInBackground {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .navbar {
+      width: 100%;
+    }
+
+    .dashboard {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: slideInDashboard 1s ease-out;
+    }
+
+    @keyframes slideInDashboard {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .dashboard h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .dashboard .btn {
+      margin-bottom: 1rem;
+      padding: 1.5rem 3rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .btn-create-folder {
+      background-color: #006d77;
+      color: #fff;
+    }
+
+    .btn-upload-images {
+      background-color: #83c5be;
+      color: #fff;
+    }
+
+    .btn-view-storage {
+      background-color: #ffddd2;
+      color: #333;
+    }
+
+    .btn-view-edit-folders {
+      background-color: #e29578;
+      color: #fff;
+    }
+
+    .dashboard .btn:hover {
+      transform: translateY(-5px);
+      filter: brightness(1.1);
+    }
+
+    .dashboard .btn i {
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 767px) {
+      .dashboard {
+        padding: 2rem 1rem;
+      }
+
+      .dashboard .btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+      }
+    }
+
+{% endblock css %}
+
+{% block content %}
+{% include 'photo_template/includes/alerts.html' %}
+  <main class="dashboard">
+    <div class="container my-5 text-center">
+      <h1 class="animate__animated animate__fadeInUp mb-4">Photographer Dashboard</h1>
+      <a href="{% url 'folders:create_folder' %}" class="btn btn-create-folder animate__animated animate__fadeInUp animate__delay-1s">
+        <i class="fas fa-folder-plus"></i> Create Folder
+      </a>
+      <a href="{% url 'folders:upload_images' %}" class="btn btn-upload-images animate__animated animate__fadeInUp animate__delay-2s">
+        <i class="fas fa-upload"></i> Upload Images
+      </a>
+      <a href="#" class="btn btn-view-storage animate__animated animate__fadeInUp animate__delay-3s">
+        <i class="fas fa-database"></i> View Storage
+      </a>
+      <a href="#" class="btn btn-view-edit-folders animate__animated animate__fadeInUp animate__delay-4s">
+        <i class="fas fa-edit"></i> View/Edit Folders
+      </a>
+    </div>
+  </main>
+{% endblock content %}

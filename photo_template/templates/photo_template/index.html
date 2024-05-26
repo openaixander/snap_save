@@ -1,0 +1,48 @@
+{% extends 'photo_template/base.html' %}
+
+
+
+{% block content %}
+<main>
+  {% include 'photo_template/includes/alerts.html' %}
+  <section class="hero">
+    <div class="container">
+        <h1 class="animate__animated animate__fadeInUp">Capture Your Memories</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Share your photos with the world on SnapShare</p>
+        <a href="{% url 'photo_template:selection' %}" class="btn btn-primary btn-lg">Get Started</a>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Unlimited Storage</h5>
+                <p class="card-text">Upload as many photos as you want with our unlimited storage plans.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Secure Payments</h5>
+                <p class="card-text">Enjoy secure and hassle-free payments with our trusted payment gateway.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Global Reach</h5>
+                <p class="card-text">Share your photos with clients from around the world.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

@@ -1,0 +1,138 @@
+{% extends 'photo_template/base.html' %}
+
+
+{% block title %}
+Client Dashboard - SnapShare
+{% endblock title %}
+
+{% block css %}
+
+    body {
+      cursor: url('https://i.imgur.com/DmBTFWT.png'), auto;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/random/1920x1080?client');
+      background-size: cover;
+      background-position: center;
+      animation: fadeInBackground 2s ease-in-out;
+    }
+
+    @keyframes fadeInBackground {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .navbar {
+      width: 100%;
+    }
+
+    .dashboard {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: slideInDashboard 1s ease-out;
+    }
+
+    @keyframes slideInDashboard {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .dashboard h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .dashboard .btn {
+      margin-bottom: 1rem;
+      padding: 1.5rem 3rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .btn-search-folder {
+      background-color: #6c63ff;
+    }
+
+    .btn-view-orders {
+      background-color: #ff6584;
+    }
+
+    .btn-contact-support {
+      background-color: #3abff8;
+    }
+
+    .dashboard .btn:hover {
+      transform: translateY(-5px);
+      filter: brightness(1.1);
+    }
+
+    .dashboard .btn i {
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+
+    footer {
+      margin-top: auto;
+      background-color: rgba(52, 58, 64, 0.9);
+      color: #fff;
+      padding: 1rem 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    @media (max-width: 767px) {
+      .dashboard {
+        padding: 2rem 1rem;
+      }
+
+      .dashboard .btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+      }
+    }
+{% endblock css %}
+
+
+{% block content %}
+{% include 'photo_template/includes/alerts.html' %}
+  <main class="dashboard">
+    <div class="container my-5 text-center">
+      <h1 class="animate__animated animate__fadeInUp mb-4">Client Dashboard</h1>
+      <a href="{% url 'photo_template:search_token' %}" class="btn btn-search-folder animate__animated animate__fadeInUp animate__delay-1s">
+        <i class="fas fa-search"></i> Search Folder
+      </a>
+      <a href="#" class="btn btn-view-orders animate__animated animate__fadeInUp animate__delay-2s">
+        <i class="fas fa-box"></i> View Orders
+      </a>
+      <a href="#" class="btn btn-contact-support animate__animated animate__fadeInUp animate__delay-3s">
+        <i class="fas fa-headset"></i> Contact Support
+      </a>
+    </div>
+  </main>
+{% endblock content %}

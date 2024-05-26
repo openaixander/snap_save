@@ -1,0 +1,142 @@
+{% extends 'photo_template/base.html' %}
+
+{% block title %}
+  SnapShare - Register
+{% endblock title %}
+
+
+{% block css %}
+    body {
+      background-color: #f8f9fa;
+      cursor: url('https://i.imgur.com/DmBTFWT.png'), auto;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .register {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/random/1920x1080?photography');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    .register-form {
+      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .register-form h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .register-form .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .register-form .form-control {
+      border-radius: 0;
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid #ff4d4d;
+      color: #333;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+    }
+
+    .register-form .form-control:focus {
+      background-color: transparent;
+      border-color: #e63333;
+      box-shadow: none;
+    }
+
+    .register-form .btn {
+      background-color: #ff4d4d;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 0;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .register-form .btn:hover {
+      background-color: #e63333;
+    }
+
+        /* Hide number input spinner and arrow buttons */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield; /* Firefox */
+    }
+
+    .non_field_errors {
+      color: red; /* Change the color to your desired color */
+      /* Add any other styling properties as needed */
+  } 
+
+    @media (max-width: 767px) {
+      .register {
+        padding: 4rem 1rem;
+      }
+    }
+{% endblock css %}
+
+{% block content %}
+  <main class="register">
+    <div class="container mt-4 mb-4">
+      <div class="register-form animate__animated animate__fadeInUp">
+        <h2 class="text-dark">Register</h2>
+        <form action="{% url 'accounts:register_client' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <!-- <input name="first_name" type="text" class="form-control" placeholder="First Name"> -->
+            {{ form.first_name }}
+          </div>
+          <div class="form-group">
+            <!-- <input type="text" name="last_name" class="form-control" placeholder="Last Name"> -->
+            {{ form.last_name }}
+          </div>
+          <div class="form-group">
+            <!-- <input type="email" name="email" class="form-control" placeholder="Email"> -->
+            {{ form.email }}
+          </div>
+          <div class="form-group">
+            <!-- <input type="email" name="email" class="form-control" placeholder="Email"> -->
+            {{ form.phone_number }}
+          </div>
+          <div class="form-group">
+            <!-- <input type="password" name="password" class="form-control" placeholder="Password"> -->
+            {{ form.password }}
+          </div>
+          <div class="form-group">
+            <!-- <input type="password"  class="form-control" placeholder="Confirm Password"> -->
+            {{ form.confirm_password }}
+          </div>
+          <button type="submit" class="btn btn-block">Register</button>
+          <p class="text-center text-dark mt-4">Have an account? <a href="{% url 'accounts:login' %}">Log In</a></p>
+          <div class="form-group text-center non_field_errors">
+            {{ form.email.errors }}
+            {{ form.non_field_errors }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+{% endblock content %}

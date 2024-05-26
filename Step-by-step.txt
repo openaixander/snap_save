@@ -1,0 +1,91 @@
+"{% if token %}
+      <div class="mt-4">
+        <label for="folderToken" class="form-label">Folder Token</label>
+        <div class="input-group">
+          <input type="text" id="folderToken" class="form-control" value="{{ token }}" readonly>
+          <button class="btn btn-secondary" type="button" onclick="copyToken()">Copy</button>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <script>
+    function copyToken() {
+      const tokenInput = document.getElementById('folderToken');
+      tokenInput.select();
+      tokenInput.setSelectionRange(0, 99999); // For mobile devices
+
+      navigator.clipboard.writeText(tokenInput.value).then(() => {
+        alert('Token copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script> "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+irst, we need to display the index.html of the snap_save app.
+    Create view for it to display it
+        Time to check whether it works or not
+
+    Now that it works. It is time to create the user account
+
+    Creating the custom user model for the users to create and activate their account!
+
+
+Creation of the folder and sending of the token to the email of the user.
+
+If a user fills in the necessary fields to make a folder, automatically, a token is generated for the photographer for that folder, which will sent to their email.
+Now, if they check their email, they can copy that token and send it to the client.
+
+Now, the client can actually paste that token, and that folder will actually be retrieved for the user.
+
+We have fields:
+    folder_name
+    folder_description
+
+    Now we need to make a form outta this two.
+
+    Now that the two fields are available, time to import them to the views.
+
+
+Now that the creation for the folder is created together with the token which is generated automatically. Now it is time to see the client side,
+which is shared the token, and gets to use it for 5 times
+
+We need to import the folder model to out views, so that we can get a token whenever a user searches for a specific folder with the generated token
+
+Now that the folder that's been searched is displayed together with the token being used by the user. 
+  It is now time to move on to the upload images. 
+   This will have:
+      upload images
+        We should create a model which has the:
+          folder(foreignkey)
+          imagefield
+          date_added
+
+            Now, since this has been added, it is time to actually make a form for the the upload images field
+
+
+            Very Important!!!!!
+                I have to check how I can see them pictures and display them, after that too, I have too see what is in a folder to view them too
+                I have to fix the styling of the form for me to use it efficiently
+
+      upload zip file
+        Moving to the next field, which will be uploading via zip file
+        let's create a template for that too!
+

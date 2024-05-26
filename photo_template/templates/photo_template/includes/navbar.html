@@ -1,0 +1,73 @@
+{% load static %}
+
+<style>
+  .nav-link.border {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  /* color: rgba(197, 197, 197, 0.897); */
+}
+
+</style>
+
+
+
+{% load static %}
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <!-- Add your logo here -->
+        <img src="" alt="SnapShare Logo" style="border-radius: 50%;" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item d-none d-lg-block">
+            <small class="nav-link text-white">Welcome, {{ user.first_name }}!</small>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'photo_template:index' %}">Home</a>
+          </li>
+          {% if user.is_photographer %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'photo_template:p_dashboard' %}">Dashboard</a>
+          </li>
+          {% elif user.is_client %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'photo_template:c_dashboard' %}">Dashboard</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item d-none d-lg-block">
+            <small class="nav-link text-white">Welcome, User!</small>
+          </li>
+          <li class="nav-item nav-item d-none d-lg-block">
+            <a class="nav-link text-white" href="{% url 'accounts:login' %}">Sign in</a>
+          </li>
+          <li class="nav-item nav-item d-none d-lg-block">
+            <a class="nav-link border text-white" href="{% url 'photo_template:selection' %}">Register</a>
+          </li>
+          <li class="nav-item mt-3 nav-item d-lg-none d-sm-block">
+            <a class="nav-link  text-white" href="{% url 'accounts:login' %}">Sign in</a>
+          </li>
+          <li class="nav-item nav-item d-lg-none d-sm-block">
+            <a class="nav-link text-white" href="{% url 'photo_template:selection' %}">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

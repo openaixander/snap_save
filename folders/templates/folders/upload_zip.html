@@ -1,0 +1,174 @@
+{% extends 'photo_template/base.html' %}
+
+{% block title %}
+Upload Zip - SnapShare
+{% endblock title %}
+
+{% block css %}
+body {
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.upload-files {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.upload-container {
+  text-align: center;
+  width: 100%;
+}
+
+.upload-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  animation: fadeInUp 1s;
+}
+
+.upload-form {
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s;
+}
+
+.upload-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.upload-form .form-control,
+.upload-form .form-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.upload-form .form-control:focus,
+.upload-form .form-select:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
+.upload-form .upload-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  color: #fff;
+  background-color: #28a745;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.upload-form .upload-btn:hover {
+  background-color: #218838;
+}
+
+.upload-form .upload-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.progress {
+  width: 100%;
+  height: 1.5rem;
+  margin-top: 1rem;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+  display: none;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.success-message {
+  display: none;
+  margin-top: 1rem;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.error-message {
+  display: none;
+  margin-top: 1rem;
+  color: #dc3545;
+  font-weight: bold;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+{% endblock css %}
+
+{% block content %}
+<main class="upload-files">
+  <div class="upload-container">
+    <h1 class="upload-title">Upload Zip</h1>
+    <form id="upload-form" method="post" enctype="multipart/form-data" action="{% url 'folders:upload_zip' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.folder }}
+      </div>
+      <div class="form-group">
+        {{ form.zip_file }}
+      </div>
+      <button type="submit" class="upload-btn mt-3 btn btn-lg btn-primary" id="upload-btn" disabled>Upload</button>
+      <div class="progress mt-3">
+        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="success-message" id="success-message">Upload Complete!</div>
+      <div class="error-message" id="error-message">Please select a folder and choose a ZIP file to upload.</div>
+    </form>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const folderInput = document.getElementById('id_folder');
+  const zipFileInput = document.getElementById('id_zip_file');
+  const uploadBtn = document.getElementById('upload-btn');
+
+  function validateForm() {
+    if (folderInput.value && zipFileInput.files.length > 0) {
+      uploadBtn.disabled = false;
+    } else {
+      uploadBtn.disabled = true;
+    }
+  }
+
+  folderInput.addEventListener('change', validateForm);
+  zipFileInput.addEventListener('change', validateForm);
+});
+</script>
+{% endblock content %}

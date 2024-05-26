@@ -1,0 +1,111 @@
+body {
+    background-color: #f8f9fa;
+    cursor: url('https://i.imgur.com/DmBTFWT.png'), auto; /* Custom cursor */
+    font-family: 'Poppins', sans-serif; /* Custom font */
+    color: #333; /* Custom text color */
+  }
+
+  .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/random/1920x1080?photography'); /* Random background image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: bold;
+    animation: fadeInUp 1s; /* Animate on Scroll (AOS) animation */
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    animation: fadeInUp 1s 0.5s backwards; /* Animate on Scroll (AOS) animation with delay */
+  }
+
+  .services {
+    padding: 4rem 0;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .services h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .services .card {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .services .card:hover {
+    transform: translateY(-10px);
+  }
+
+  .services .card-body {
+    padding: 2rem;
+  }
+
+  .services .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .services .card-text {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      height: auto;
+      padding: 4rem 1rem;
+    }
+  }
+
+
+/* STARTING THE SELECTION STYLING */
+  .selection {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .selection h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: bold;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s;
+  }
+
+  .selection a {
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff4d4d;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .selection a:hover {
+    transform: translateY(-5px);
+    background-color: #e63333;
+  }
+/* ENDING THE SELECTION STYLING */

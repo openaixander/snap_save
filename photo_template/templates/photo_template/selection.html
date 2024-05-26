@@ -1,0 +1,33 @@
+{% extends 'photo_template/base.html' %}
+
+{% block title %}
+    SnapShare - Select Role
+{% endblock title %}
+
+{% block css %}
+    body {
+      background-color: #f8f9fa;
+      cursor: url('https://i.imgur.com/DmBTFWT.png'), auto;
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      display: flex;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/random/1920x1080?photography');
+      background-size: cover;
+      background-position: center;
+      flex-direction: column;
+      min-height: 100vh;
+      height: 100vh;
+    }
+{% endblock css %}
+
+
+{% block content %}
+  <main class="selection">
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInUp text-white">Select Your Role</h1>
+      <a href="{% url 'accounts:register_photographer' %}" class="animate__animated animate__fadeInUp animate__delay-1s">Photographer</a>
+      <a href="{% url 'accounts:register_client' %}" class="animate__animated animate__fadeInUp animate__delay-2s">Client</a>
+    </div>
+  </main>
+{% endblock content %}
+
